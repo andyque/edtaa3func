@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project (edtaa3func)
 
-set(edtaa3func_SRC
+set(SRC
 ./edtaa3func.cpp
 )
 
@@ -11,14 +11,16 @@ include_directories(
 )
 
 add_library(edtaa3func STATIC
-  ${edtaa3func_SRC}
+  ${SRC}
 )
 
-set_target_properties(edtaa3func
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+INSTALL(
+  TARGETS edtaa3func
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  COMPONENT library
 )
-#install header files
-install(DIRECTORY . DESTINATION "include/"
-  FILES_MATCHING PATTERN "*.h") 
+
+INSTALL(FILES edtaa3func.h
+        DESTINATION "include"
+)
